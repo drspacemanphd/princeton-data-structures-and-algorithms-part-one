@@ -16,7 +16,7 @@ public class SocialNetworkTimestampAlgorithmTest {
     public void testThatCorrectTimestampCanBeObtainedOne() throws Exception {
 
         // Setup
-        String filePath = new File(".").getCanonicalPath() + "\\weekone\\dynamic-connectivity\\src\\test\\resources\\test.csv";
+        String filePath = new File(".").getCanonicalPath() + "\\src\\test\\resources\\test.csv";
         algorithm = new SocialNetworkTimestampAlgorithm(4, filePath);
 
         // Test
@@ -30,7 +30,7 @@ public class SocialNetworkTimestampAlgorithmTest {
 
         // Setup
         String filePath = new File(".").getCanonicalPath()
-                + "\\weekone\\dynamic-connectivity\\src\\test\\resources\\test2.csv";
+                + "\\src\\test\\resources\\test2.csv";
         algorithm = new SocialNetworkTimestampAlgorithm(10, filePath);
 
         // Test
@@ -44,7 +44,7 @@ public class SocialNetworkTimestampAlgorithmTest {
 
         // Setup
         String filePath = new File(".").getCanonicalPath()
-                + "\\weekone\\dynamic-connectivity\\src\\test\\resources\\test3.csv";
+                + "\\src\\test\\resources\\test3.csv";
         algorithm = new SocialNetworkTimestampAlgorithm(10, filePath);
 
         // Test
@@ -58,7 +58,7 @@ public class SocialNetworkTimestampAlgorithmTest {
 
         // Setup
         String filePath = new File(".").getCanonicalPath()
-                + "\\weekone\\dynamic-connectivity\\src\\test\\resources\\test4.csv";
+                + "\\src\\test\\resources\\test4.csv";
         algorithm = new SocialNetworkTimestampAlgorithm(10, filePath);
 
         // Test
