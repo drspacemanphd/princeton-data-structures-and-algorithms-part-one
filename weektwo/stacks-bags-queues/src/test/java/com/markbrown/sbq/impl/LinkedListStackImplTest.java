@@ -5,6 +5,8 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
+import java.util.Iterator;
+
 import org.junit.Test;
 
 public class LinkedListStackImplTest {
@@ -31,7 +33,7 @@ public class LinkedListStackImplTest {
 
         String poppedThree = stack.pop();
         assertEquals("I ", poppedThree);
-        // assertEquals(2, stack.size(), 0);
+        assertEquals(2, stack.size(), 0);
 
         String poppedFour = stack.pop();
         assertEquals("World! ", poppedFour);
@@ -50,6 +52,31 @@ public class LinkedListStackImplTest {
         stack.push("ANOTHER");
         assertEquals(1, stack.size(), 0);
         assertEquals("ANOTHER", stack.pop());
+
+    }
+
+    @Test
+    public void testThatItemsCanBeIterated() {
+
+        LinkedListStackImpl<String> stack = new LinkedListStackImpl<String>();
+        stack.push("Hello ");
+        stack.push("World! ");
+        stack.push("I ");
+        stack.push("Am ");
+        stack.push("Mark");
+
+        Iterator it = stack.iterator();
+        assertTrue(it.hasNext());
+        assertEquals("Mark", it.next());
+        assertTrue(it.hasNext());
+        assertEquals("Am ", it.next());
+        assertTrue(it.hasNext());
+        assertEquals("I ", it.next());
+        assertTrue(it.hasNext());
+        assertEquals("World! ", it.next());
+        assertTrue(it.hasNext());
+        assertEquals("Hello ", it.next());
+        assertFalse(it.hasNext());
 
     }
 }

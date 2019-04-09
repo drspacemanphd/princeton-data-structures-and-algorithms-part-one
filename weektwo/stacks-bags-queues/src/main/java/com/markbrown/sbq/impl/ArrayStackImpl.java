@@ -1,6 +1,8 @@
 package com.markbrown.sbq.impl;
 
-public class ArrayStackImpl<T> implements Stack<T> {
+import java.util.Iterator;
+
+public class ArrayStackImpl<T> implements Stack<T>, Iterable<T> {
 
     private Object[] arr;
     private int currentIndex;
@@ -43,6 +45,34 @@ public class ArrayStackImpl<T> implements Stack<T> {
             newArr[i] = this.arr[i];
         }
         this.arr = newArr;
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        return new ArrayStackIterator();
+    }
+
+    private class ArrayStackIterator implements Iterator<T> {
+
+        private int index;
+
+        public ArrayStackIterator() {
+            index = currentIndex;
+        }
+
+        @Override
+        public boolean hasNext() {
+            return index > 0;
+        }
+
+        @SuppressWarnings("unchecked")
+        @Override
+        public T next() {
+            if (!hasNext())
+                throw new IllegalArgumentException();
+            return (T) arr[--index];
+        }
+
     }
     
 }

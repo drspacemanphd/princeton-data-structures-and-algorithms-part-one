@@ -1,13 +1,14 @@
 package com.markbrown.sbq.impl;
 
-public class LinkedListStackImpl<T> implements Stack<T> {
+import java.util.Iterator;
+
+public class LinkedListStackImpl<T> implements Stack<T>, Iterable<T> {
 
     private Node<T> first;
 
     public T push(T payload) {
         Node<T> oldFirst = this.first;
         first = new Node<T>(payload, oldFirst);
-        System.out.println(first.getNext());
         return payload;
     }
 
@@ -48,6 +49,34 @@ public class LinkedListStackImpl<T> implements Stack<T> {
 
         public Node<U> getNext() {
             return this.next;
+        }
+
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        return new ListStackIterator();
+    }
+
+    private class ListStackIterator implements Iterator<T> {
+
+        private Node<T> index;
+
+        public ListStackIterator() {
+            index = first;
+        }
+
+        @Override
+        public boolean hasNext() {
+            return index != null;
+        }
+
+        @Override
+        public T next() {
+            if (index == null) throw new IllegalArgumentException();
+            T toReturn = index.getPayload();
+            index = index.getNext() == null ? null : index.getNext();
+            return toReturn;
         }
 
     }

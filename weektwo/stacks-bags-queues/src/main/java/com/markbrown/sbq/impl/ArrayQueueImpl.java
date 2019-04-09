@@ -1,6 +1,8 @@
 package com.markbrown.sbq.impl;
 
-public class ArrayQueueImpl<T> implements Queue<T> {
+import java.util.Iterator;
+
+public class ArrayQueueImpl<T> implements Queue<T>, Iterable<T> {
 
     private Object[] arr;
     private int firstIndex;
@@ -14,7 +16,8 @@ public class ArrayQueueImpl<T> implements Queue<T> {
 
     @Override
     public T enqueue(T t) {
-        if (currentIndex == arr.length) resize(currentIndex * 2 - 1);
+        if (currentIndex == arr.length)
+            resize(currentIndex * 2 - 1);
         arr[currentIndex++] = t;
         return t;
     }
@@ -22,8 +25,10 @@ public class ArrayQueueImpl<T> implements Queue<T> {
     @SuppressWarnings("unchecked")
     @Override
     public T dequeue() {
-        if (firstIndex == currentIndex) return null;
-        if (currentIndex == (arr.length / 4)) resize(arr.length / 2 - 1);
+        if (firstIndex == currentIndex)
+            return null;
+        if (currentIndex == (arr.length / 4))
+            resize(arr.length / 2 - 1);
         return (T) arr[firstIndex++];
     }
 
@@ -43,6 +48,33 @@ public class ArrayQueueImpl<T> implements Queue<T> {
             resized[i] = arr[i];
         }
         arr = resized;
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        return new ArrayQueueIterator();
+    }
+
+    private class ArrayQueueIterator implements Iterator<T> {
+
+        private int index;
+
+        public ArrayQueueIterator() {
+            index = firstIndex;
+        }
+
+        @Override
+        public boolean hasNext() {
+            return index < currentIndex;
+        }
+
+        @SuppressWarnings("unchecked")
+        @Override
+        public T next() {
+            if (!hasNext()) throw new IllegalArgumentException();
+            return (T) arr[index++];
+        }
+
     }
 
 }

@@ -1,6 +1,8 @@
 package com.markbrown.sbq.impl;
 
-public class LinkedListQueueImpl<T> implements Queue<T> {
+import java.util.Iterator;
+
+public class LinkedListQueueImpl<T> implements Queue<T>, Iterable<T> {
 
     private Node<T> first, last;
 
@@ -65,6 +67,34 @@ public class LinkedListQueueImpl<T> implements Queue<T> {
 
         public void setNext(Node<U> next) {
             this.next = next;
+        }
+
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        return new ListQueueIterator();
+    }
+
+    private class ListQueueIterator implements Iterator<T> {
+
+        private Node<T> index;
+
+        public ListQueueIterator() {
+            index = first;
+        }
+
+        @Override
+        public boolean hasNext() {
+            return index != null;
+        }
+
+        @Override
+        public T next() {
+            if (index == null) throw new IllegalArgumentException();
+            T toReturn = index.getPayload();
+            index = index.getNext() == null ? null : index.getNext();
+            return toReturn;
         }
 
     }

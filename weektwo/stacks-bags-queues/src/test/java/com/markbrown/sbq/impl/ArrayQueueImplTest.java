@@ -5,12 +5,14 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
+import java.util.Iterator;
+
 import org.junit.Test;
 
 public class ArrayQueueImplTest {
 
     @Test
-    public void testThatQueueCanBeCreatedBasedOnList() {
+    public void testThatQueueCanBeCreatedBasedOnArray() {
 
         ArrayQueueImpl<String> queue = new ArrayQueueImpl<String>();
         queue.enqueue("Hello ");
@@ -31,7 +33,7 @@ public class ArrayQueueImplTest {
 
         String poppedThree = queue.dequeue();
         assertEquals("I ", poppedThree);
-        // assertEquals(2, stack.size(), 0);
+        assertEquals(2, queue.size(), 0);
 
         String poppedFour = queue.dequeue();
         assertEquals("Am ", poppedFour);
@@ -50,6 +52,31 @@ public class ArrayQueueImplTest {
         queue.enqueue("ANOTHER");
         assertEquals(1, queue.size(), 0);
         assertEquals("ANOTHER", queue.dequeue());
+
+    }
+
+    @Test
+    public void testThatItemsCanBeIterated() {
+
+        ArrayQueueImpl<String> queue = new ArrayQueueImpl<String>();
+        queue.enqueue("Hello ");
+        queue.enqueue("World! ");
+        queue.enqueue("I ");
+        queue.enqueue("Am ");
+        queue.enqueue("Mark");
+
+        Iterator it = queue.iterator();
+        assertTrue(it.hasNext());
+        assertEquals("Hello ", it.next());
+        assertTrue(it.hasNext());
+        assertEquals("World! ", it.next());
+        assertTrue(it.hasNext());
+        assertEquals("I ", it.next());
+        assertTrue(it.hasNext());
+        assertEquals("Am ", it.next());
+        assertTrue(it.hasNext());
+        assertEquals("Mark", it.next());
+        assertFalse(it.hasNext());
 
     }
     
