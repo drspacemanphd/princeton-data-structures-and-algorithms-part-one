@@ -27,7 +27,6 @@ public class BitonicArray {
     }
 
     private int getMax(int[] arr, int startIndex) {
-        System.out.println(startIndex);
         if ((startIndex <= 0 || startIndex >= arr.length - 1) || (arr[startIndex] > arr[startIndex - 1] && arr[startIndex] > arr[startIndex + 1])) {
             return startIndex;
         } else if (arr[startIndex + 1] > arr[startIndex] ) {
