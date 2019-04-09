@@ -1,14 +1,16 @@
 package com.markbrown.sbq.impl;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
 public class LinkedListStackImplTest {
 
     @Test
-    public void testThatStackCanBeCreatedBasedOnArray() {
+    public void testThatStackCanBeCreatedBasedOnList() {
 
         LinkedListStackImpl<String> stack = new LinkedListStackImpl<String>();
         stack.push("Hello ");
@@ -34,10 +36,12 @@ public class LinkedListStackImplTest {
         String poppedFour = stack.pop();
         assertEquals("World! ", poppedFour);
         assertEquals(1, stack.size(), 0);
+        assertFalse(stack.isEmpty());
 
         String poppedFive = stack.pop();
         assertEquals("Hello ", poppedFive);
         assertEquals(0, stack.size(), 0);
+        assertTrue(stack.isEmpty());
 
         String poppedSix = stack.pop();
         assertNull(poppedSix);
