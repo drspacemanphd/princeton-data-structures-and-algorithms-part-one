@@ -65,7 +65,7 @@ public class LinkedListStackImplTest {
         stack.push("Am ");
         stack.push("Mark");
 
-        Iterator it = stack.iterator();
+        Iterator<String> it = stack.iterator();
         assertTrue(it.hasNext());
         assertEquals("Mark", it.next());
         assertTrue(it.hasNext());

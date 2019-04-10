@@ -65,7 +65,7 @@ public class ArrayQueueImplTest {
         queue.enqueue("Am ");
         queue.enqueue("Mark");
 
-        Iterator it = queue.iterator();
+        Iterator<String> it = queue.iterator();
         assertTrue(it.hasNext());
         assertEquals("Hello ", it.next());
         assertTrue(it.hasNext());

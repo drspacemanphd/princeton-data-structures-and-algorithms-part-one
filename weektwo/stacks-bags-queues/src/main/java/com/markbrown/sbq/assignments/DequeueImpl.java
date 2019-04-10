@@ -81,7 +81,9 @@ public class DequeueImpl<T> implements Dequeue<T>, Iterable<T> {
 
         @Override
         public T next() {
-            return current.getNext().getData();
+            T data = current.getData();
+            current = current.getNext();
+            return data;
         }
 
         public boolean hasPrev() {
@@ -89,7 +91,9 @@ public class DequeueImpl<T> implements Dequeue<T>, Iterable<T> {
         }
 
         public T prev() {
-            return current.getPrev().getData();
+            T data = current.getData();
+            current = current.getPrev();
+            return data;
         }
 
     }

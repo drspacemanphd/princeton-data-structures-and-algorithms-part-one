@@ -84,8 +84,9 @@ public class MaxStackListImpl<T extends Comparable<? super T>> implements Iterab
 
         @Override
         public T next() {
+            T data = start.getData();
             start = start.getNext();
-            return start.getData();
+            return data;
         }
 
     }

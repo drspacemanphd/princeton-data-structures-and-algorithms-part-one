@@ -29,6 +29,8 @@ public class DequeueImplTest {
         dequeue.addLast("GREEN");
         dequeue.addFirst("ORANGE");
 
+        for (String s : dequeue) { System.out.println(s); }
+
         assertEquals(6, dequeue.size(), 0);
         assertFalse(dequeue.isEmpty());
 
