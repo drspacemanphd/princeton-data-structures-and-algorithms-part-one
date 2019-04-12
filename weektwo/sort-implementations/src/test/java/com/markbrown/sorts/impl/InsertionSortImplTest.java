@@ -5,24 +5,24 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 
-public class SelectionSortImplTest {
+public class InsertionSortImplTest {
 
-    private SelectionSortImpl sort;
+    private InsertionSortImpl sort;
 
     @Before
     public void setup() {
-        sort = new SelectionSortImpl();
+        sort = new InsertionSortImpl();
     }
 
     @Test
     public void testIntArrayCanBeSorted() {
 
         // Setup
-        Integer[] arr = {9, -1, 3, 4, 2, 5, -3, 0};
+        Integer[] arr = { 9, -1, 3, 4, 2, 5, -3, 0 };
 
         // Test
         Integer[] returned = sort.sort(arr);
-        
+
         // Assert
         assertEquals(arr, returned);
         assertEquals(0, returned.length, 8);
