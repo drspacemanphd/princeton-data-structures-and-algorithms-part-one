@@ -39,4 +39,26 @@ public class SelectionSortImplTest {
 
     }
 
+    @Test
+    public void testStringArrayCanBeSorted() {
+
+        // Setup
+        String[] arr = { "BLUE", "GREEN", "AZALEA", "BLACK", "PURPLE", "MAROON", "CYAN", "NEON" };
+
+        // Test
+        String[] returned = sort.sort(arr);
+
+        // Assert
+        assertEquals(arr, returned);
+        assertEquals(0, returned.length, 8);
+        assertEquals("AZALEA", returned[0]);
+        assertEquals("BLACK", returned[1]);
+        assertEquals("BLUE", returned[2]);
+        assertEquals("CYAN", returned[3]);
+        assertEquals("GREEN", returned[4]);
+        assertEquals("MAROON", returned[5]);
+        assertEquals("NEON", returned[6]);
+        assertEquals("PURPLE", returned[7]);
+
+    }
 }
