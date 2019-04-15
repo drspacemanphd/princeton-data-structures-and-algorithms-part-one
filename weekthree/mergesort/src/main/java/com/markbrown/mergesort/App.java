@@ -1,4 +1,4 @@
-package com.markbrown.sorts;
+package com.markbrown.mergesort;
 
 /**
  * Hello world!
