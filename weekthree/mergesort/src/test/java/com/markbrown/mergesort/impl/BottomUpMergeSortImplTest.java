@@ -40,4 +40,24 @@ public class BottomUpMergeSortImplTest {
 
     }
 
+    @Test
+    public void testMergeSortTwo() {
+        // Setup
+        Integer[] arr = { 1, -4, 6, 3, 7, 2, -6 };
+
+        // Test
+        Integer[] returnedArr = mergeSortImpl.sort(arr);
+
+        // Assert
+        assertNotNull(returnedArr);
+        assertEquals(-6, returnedArr[0], 0);
+        assertEquals(-4, returnedArr[1], 0);
+        assertEquals(1, returnedArr[2], 0);
+        assertEquals(2, returnedArr[3], 0);
+        assertEquals(3, returnedArr[4], 0);
+        assertEquals(6, returnedArr[5], 0);
+        assertEquals(7, returnedArr[6], 0);
+
+    }
+
 }

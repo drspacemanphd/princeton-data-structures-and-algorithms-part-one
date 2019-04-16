@@ -1,7 +1,5 @@
 package com.markbrown.mergesort.impl;
 
-import java.util.stream.Stream;
-
 public class BottomUpMergeSortImpl implements Sort {
 
     @Override
@@ -9,11 +7,10 @@ public class BottomUpMergeSortImpl implements Sort {
         
         T[] temp = (T[]) new Comparable[arr.length];
 
-        int n = arr.length;
-        for (int len = 1; len < n; len *= 2) {
-            for (int lo = 0; lo < n - len; lo += len + len) {
+        for (int len = 1; len < arr.length; len *= 2) {
+            for (int lo = 0; lo < arr.length - len; lo += (2 * len)) {
                 int mid = lo + len - 1; 
-                int hi = Math.min(lo + len + len - 1, n - 1);
+                int hi = Math.min(lo + len + len - 1, arr.length - 1);
                 sort(arr, temp, lo, mid, hi);
             }
         }
