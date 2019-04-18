@@ -3,7 +3,7 @@ package com.markbrown.quicksort.impl;
 public class QuickSelect {
 
     public <T extends Comparable<T>> T selectMth(T[] arr, int m) {
-        // shuffle(arr);
+        shuffle(arr);
         return _sort(arr, 0, arr.length - 1, m);
     }
 
