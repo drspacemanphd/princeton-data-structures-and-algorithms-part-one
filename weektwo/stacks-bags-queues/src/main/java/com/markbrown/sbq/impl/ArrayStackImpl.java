@@ -4,17 +4,17 @@ import java.util.Iterator;
 
 public class ArrayStackImpl<T> implements Stack<T>, Iterable<T> {
 
-    private Object[] arr;
+    private T[] arr;
     private int currentIndex;
 
     public ArrayStackImpl() {
-        arr = new Object[1];
+        arr = (T[]) new Object[1];
         currentIndex = 0;
     }
 
     @Override
     public T push(T t) {
-        if (currentIndex == arr.length) resize(arr.length * 2 - 1);
+        if (currentIndex == arr.length) resize(currentIndex, arr.length * 2);
         arr[currentIndex++] = t;
         return t;
     }
@@ -23,9 +23,8 @@ public class ArrayStackImpl<T> implements Stack<T>, Iterable<T> {
     @Override
     public T pop() {
         if (currentIndex == 0) return null;
-        if (currentIndex == (arr.length / 4)) resize(arr.length / 2 - 1);
-        currentIndex--;
-        T t = (T) arr[currentIndex];
+        if (currentIndex == (arr.length / 4)) resize(currentIndex, arr.length / 2);
+        T t = arr[--currentIndex];
         return t;
     }
 
@@ -39,12 +38,12 @@ public class ArrayStackImpl<T> implements Stack<T>, Iterable<T> {
         return currentIndex;
     }
 
-    private void resize(int endIndex) {
-        Object newArr[] = new Object[endIndex + 1];
-        for (int i = 0; i <= currentIndex - 1; i++) {
-            newArr[i] = this.arr[i];
+    private void resize(int exclEnd, int newLength) {
+        T[] newArr = (T[]) new Object[newLength];
+        for (int i = 0; i < exclEnd; i++) {
+            newArr[i] = arr[i];
         }
-        this.arr = newArr;
+        arr = newArr;
     }
 
     @Override

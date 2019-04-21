@@ -4,20 +4,18 @@ import java.util.Iterator;
 
 public class ArrayQueueImpl<T> implements Queue<T>, Iterable<T> {
 
-    private Object[] arr;
+    private T[] arr;
     private int firstIndex;
     private int currentIndex;
 
     public ArrayQueueImpl() {
-        arr = new Object[1];
-        firstIndex = 0;
-        currentIndex = 0;
+        arr = (T[]) new Object[1];
     }
 
     @Override
     public T enqueue(T t) {
         if (currentIndex == arr.length)
-            resize(currentIndex * 2 - 1);
+            resize(firstIndex, currentIndex, arr.length * 2);
         arr[currentIndex++] = t;
         return t;
     }
@@ -27,9 +25,12 @@ public class ArrayQueueImpl<T> implements Queue<T>, Iterable<T> {
     public T dequeue() {
         if (firstIndex == currentIndex)
             return null;
-        if (currentIndex == (arr.length / 4))
-            resize(arr.length / 2 - 1);
-        return (T) arr[firstIndex++];
+        if (currentIndex - firstIndex == (arr.length / 4)) {
+            resize(firstIndex, currentIndex, arr.length / 2);
+            currentIndex -= firstIndex;
+            firstIndex = 0;
+        }
+        return arr[firstIndex++];
     }
 
     @Override
@@ -42,10 +43,10 @@ public class ArrayQueueImpl<T> implements Queue<T>, Iterable<T> {
         return currentIndex - firstIndex;
     }
 
-    private void resize(int endIndex) {
-        Object[] resized = new Object[endIndex + 1];
-        for (int i = 0; i < currentIndex; i++) {
-            resized[i] = arr[i];
+    private void resize(int start, int exclEnd, int newLength) {
+        T[] resized = (T[]) new Object[newLength];
+        for (int i = 0; i + start < exclEnd; i++) {
+            resized[i] = arr[i + start];
         }
         arr = resized;
     }
