@@ -1,7 +1,5 @@
 package com.markbrown.priority.impl;
 
-import java.util.stream.Stream;
-
 public class BinaryHeap<T extends Comparable<T>> {
 
     private T[] arr;
@@ -34,10 +32,10 @@ public class BinaryHeap<T extends Comparable<T>> {
     }
 
     private void sink(int i) {
-        while (2 * i < currIndex) {
+        while (i * 2 < currIndex - 1) {
             int j = i * 2;
             if (j + 1 < currIndex - 1 && arr[j].compareTo(arr[j + 1]) < 0) j++;
-            if (arr[i].compareTo(arr[j]) > 0 || j + 1 >= currIndex) break;
+            if (arr[i].compareTo(arr[j]) > 0) break;
             exchange(i, j);
             i = j;
         }
@@ -47,7 +45,6 @@ public class BinaryHeap<T extends Comparable<T>> {
         if (currIndex == arr.length) resize(currIndex, arr.length * 2);
         arr[currIndex++] = data;
         swim(currIndex - 1);
-        System.out.println(currIndex);
         return data;
     }
 
@@ -58,11 +55,6 @@ public class BinaryHeap<T extends Comparable<T>> {
         exchange(1, currIndex - 1);
         sink(1);
         arr[--currIndex] = null;
-        System.out.println(" ");
-        Stream.of(arr).forEach(e -> System.out.print(e + ", "));
-        System.out.println(" ");
-        System.out.println(currIndex);
-        System.out.println(" ");
         return max;
     }
 
