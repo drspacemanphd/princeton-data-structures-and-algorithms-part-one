@@ -146,12 +146,6 @@ public class DynamicMedian<T extends Comparable<T>> {
         if (getMaxHeapSize() > getMinHeapSize() + 1) rebalanceMaxHeapToMinHeap();
         if (getMinHeapSize() > getMaxHeapSize() + 1) rebalanceMinHeapToMaxHeap();
 
-        Stream.of(minHeap).forEach(e -> System.out.print(e + ", "));
-        System.out.println(" ");
-        Stream.of(maxHeap).forEach(e -> System.out.print(e + ", "));
-        System.out.println(" ");
-        System.out.println(" ");
-
         return data;
     }
 
