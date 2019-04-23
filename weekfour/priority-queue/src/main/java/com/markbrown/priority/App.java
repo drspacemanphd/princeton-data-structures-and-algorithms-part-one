@@ -1,6 +1,6 @@
 package com.markbrown.priority;
 
-import com.markbrown.priority.impl.SortedPriorityQueueArray;
+import com.markbrown.priority.impl.BinaryHeap;
 
 /**
  * Hello world!
@@ -10,7 +10,7 @@ public class App
 {
     public static void main( String[] args )
     {
-        SortedPriorityQueueArray<Integer> queue = new SortedPriorityQueueArray<>();
+        BinaryHeap<Integer> queue = new BinaryHeap<>();
 
         queue.insert(1);
         queue.insert(5);
@@ -20,5 +20,15 @@ public class App
         queue.insert(9);
         queue.insert(-2);
         queue.insert(4);
+
+        queue.removeMax();
+        queue.removeMax();
+        queue.removeMax();
+        queue.removeMax();
+        queue.removeMax();
+        queue.removeMax();
+        queue.removeMax();
+        queue.removeMax();
+
     }
 }

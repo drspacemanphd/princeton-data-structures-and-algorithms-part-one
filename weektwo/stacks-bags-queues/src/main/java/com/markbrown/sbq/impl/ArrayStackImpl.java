@@ -25,6 +25,7 @@ public class ArrayStackImpl<T> implements Stack<T>, Iterable<T> {
         if (currentIndex == 0) return null;
         if (currentIndex == (arr.length / 4)) resize(currentIndex, arr.length / 2);
         T t = arr[--currentIndex];
+        arr[currentIndex + 1] = null;
         return t;
     }
 

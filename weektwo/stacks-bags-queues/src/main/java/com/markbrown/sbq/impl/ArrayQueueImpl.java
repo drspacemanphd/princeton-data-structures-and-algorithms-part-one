@@ -30,7 +30,9 @@ public class ArrayQueueImpl<T> implements Queue<T>, Iterable<T> {
             currentIndex -= firstIndex;
             firstIndex = 0;
         }
-        return arr[firstIndex++];
+        T el = arr[firstIndex++];
+        arr[firstIndex - 1] = null;
+        return el;
     }
 
     @Override
