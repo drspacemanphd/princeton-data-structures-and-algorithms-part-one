@@ -82,10 +82,6 @@ public class ArraySymbolTableImpl<K extends Comparable<K>, V> implements Ordered
     @Override
     public boolean remove(K key) {
 
-        // for (int i = firstIndex; i < currIndex; i++) {
-        //     System.out.println("KEY: " + arr[i].getKey() + ", VALUE: " + arr[i].getValue());
-        // }
-
         if (firstIndex == currIndex) return false;
         if (currIndex - firstIndex == arr.length / 4) {
             resize(firstIndex, currIndex, arr.length / 2);
@@ -99,11 +95,6 @@ public class ArraySymbolTableImpl<K extends Comparable<K>, V> implements Ordered
             mid = (high + low) / 2;
             if (arr[mid].getKey().equals(key)) {
                 shuffleToLeft(mid, currIndex--);
-
-                for (int i = firstIndex; i < currIndex; i++) {
-                    System.out.println("KEY: " + arr[i].getKey() + ", VALUE: " + arr[i].getValue());
-                }
-
                 return true;
             } else if (arr[mid].getKey().compareTo(key) < 0) {
                 low = mid + 1;
