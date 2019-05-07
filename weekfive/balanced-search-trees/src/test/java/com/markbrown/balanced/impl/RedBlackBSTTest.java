@@ -1,4 +1,4 @@
-package com.markbrown.balanced;
+package com.markbrown.balanced.impl;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;

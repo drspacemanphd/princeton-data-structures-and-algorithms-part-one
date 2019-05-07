@@ -1,4 +1,4 @@
-package com.markbrown.balanced;
+package com.markbrown.balanced.impl;
 
 public class RedBlackBST<K extends Comparable<K>, V> {
 
