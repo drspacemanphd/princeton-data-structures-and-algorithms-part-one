@@ -38,8 +38,20 @@ public class BinarySearchTreeTest {
         assertEquals("ONE", symTable.max());
         assertEquals("EIGHT", symTable.min());
 
-        assertTrue(symTable.delete("ONE"));
+        symTable.delete("ONE");
         assertFalse(symTable.contains("ONE"));
-
+        assertEquals(4, symTable.size());
+        symTable.delete("EIGHT");
+        assertFalse(symTable.contains("EIGHT"));
+        assertEquals(3, symTable.size());
+        symTable.delete("NINE");
+        assertFalse(symTable.contains("NINE"));
+        assertEquals(2, symTable.size());
+        symTable.delete("FOURTEEN");
+        assertFalse(symTable.contains("FOURTEEN"));
+        assertEquals(1, symTable.size());
+        symTable.delete("GOOGLE");
+        assertFalse(symTable.contains("GOOGLE"));
+        assertEquals(0, symTable.size());
     }
 }

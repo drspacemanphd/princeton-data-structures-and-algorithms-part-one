@@ -95,6 +95,45 @@ public class BinarySearchTree<K extends Comparable<K>, V> implements OrderedSymb
         enqueue(node.right, queue);
     }
 
+    public void delete(K key) {
+        root = delete(root, key);
+    }
+
+    private Node<K, V> delete(Node<K, V> x, K key) {
+        if (x == null) return null;
+        int cmp = x.key.compareTo(key);
+        if (cmp > 0) x.left = delete(x.left, key);
+        else if (cmp < 0) x.right = delete(x.right, key);
+        else {
+            if (x.right == null) return x.left;
+            if (x.left == null) return x.right;
+            Node<K, V> i = x;
+            x = min(x.right);
+            x.right = deleteMin(i.right);
+            x.left = i.left;
+        }
+        int leftSize = x.left != null ? x.left.size : 0;
+        int rightSize = x.right != null ? x.right.size : 0;
+        x.size = leftSize + rightSize + 1;
+        return x;
+    } 
+
+    private Node<K, V> deleteMin(Node<K, V> x) {
+        if (x.left == null) return x.right;
+        x.left = deleteMin(x.left);
+        int leftSize = x.left != null ? x.left.size : 0;
+        int rightSize = x.right != null ? x.right.size : 0;
+        x.size = leftSize + rightSize + 1;
+        return x;
+    }
+
+    private Node<K, V> min(Node<K, V> node) {
+        Node<K, V> i = node;
+        while (i.left != null) {
+            i = i.left;
+        } return i;
+    }
+
     private class Node<T, U> {
 
         private T key;
